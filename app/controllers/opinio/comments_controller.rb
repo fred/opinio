@@ -9,6 +9,9 @@ class Opinio::CommentsController < ApplicationController
   def create
     @comment = resource.comments.build(params[:comment])
     @comment.owner = send(Opinio.current_user_method)
+    @comment.user_ip = request.remote_ip.to_s if @comment.respond_to?(:user_ip)
+    @comment.user_agent = request.user_agent.to_s if @comment.respond_to?(:user_agent)
+
     if @comment.save
       messages = { :notice => t('opinio.messages.comment_sent') }
     else
