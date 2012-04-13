@@ -10,6 +10,8 @@ module Opinio
         options = args.extract_options!
 
         has_many :comments,
+                 :conditions => options[:conditions],
+                 :include => options[:include],
                  :class_name => Opinio.model_name,
                  :as => :commentable,
                  :order => options.reverse_merge(:order => "created_at #{Opinio.sort_order}")[:order],

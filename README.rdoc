@@ -65,6 +65,18 @@ This can also be used on the `comments_for` helper.
 
 == Customization
 
+=== Models
+
+If you want to have custom conditions to the comment model you can add as such. 
+Example, you only want to load approved comments:
+
+  opinio_subjectum :conditions => {:approved => true }
+
+and also eager load associations
+
+  opinio_subjectum :conditions => {:approved => true }, :include => :owner
+
+
 === Views
 
 Of course you will want to customize how the comments are displayed or any other customization to the view. To generate the view files on your application, run:
